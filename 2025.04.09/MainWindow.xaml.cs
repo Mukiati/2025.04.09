@@ -22,8 +22,10 @@ namespace _2025._04._09
     {
         int fullprice = 0;
         int oneprice = 200;
+        filemanager file;
         public MainWindow()
         {
+            file = new filemanager("data.txt");
             InitializeComponent();
             start();
         }
@@ -46,12 +48,15 @@ namespace _2025._04._09
                 all.Children.Add(new Label {Content = $"{filigninput.Text} palacsinta\n {pastainput.Text} teszta\n {dbinput.Text} darab"});
                
                 allprice.Content = "Összesen :"+fullprice+"forint";
+                file.writeoneline(int.Parse(dbinput.Text), pastainput.Text, filigninput.Text);
 
             };
             order.Click += (ss, ee) =>
             {
+                
                 all.Children.Clear();
                 allprice.Content = "Összesen :";
+
             };
 
             cancelbutton.Click += (sss, eee) =>
@@ -80,9 +85,6 @@ namespace _2025._04._09
             }
         }
 
-        private void all_StylusUp(object sender, StylusEventArgs e)
-        {
-
-        }
+        
     }
 }
